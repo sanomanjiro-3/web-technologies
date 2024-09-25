@@ -1,1 +1,1 @@
-Було прикольно дізнатися як це все робити. буду часто використовувати команди, що пов'язані з збереженням та синхронізацією роботи.
+It was cool to learn how to do all this. I will often use commands related to saving and synchronizing work.
