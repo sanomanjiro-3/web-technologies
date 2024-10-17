@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Таблиця зі структурою</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+
+        td {
+            width: 50px;
+            height: 50px;
+            border: 1px solid black;
+        }
+
+        .cyan {
+            background-color: cyan;
+        }
+
+        .lightyellow {
+            background-color: lightyellow;
+        }
+
+        .red {
+            background-color: red;
+        }
+
+        .red1 {
+            background-color: red;
+            width: 150px;
+            height: 150px;
+        }
+
+        .blue {
+            background-color: blue;
+        }
+
+        .green {
+            background-color: green;
+        }
+
+        .yellow {
+            background-color: yellow;
+        }
+
+        .black {
+            background-color: black;
+        }
+
+        .black1 {
+            background-color: black;
+            width: 100px;
+            height: 100px;
+        }
+
+        .white {
+            background-color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <td colspan=8 class="cyan"></td>
+
+        </tr>
+        <tr>
+            <td rowspan=6 class="lightyellow"></td>
+
+            <td colspan=6 class="cyan"></td>
+
+            <td rowspan=6 class="lightyellow"></td>
+        </tr>
+        <tr>
+            <td rowspan=4 class="lightyellow"></td>
+
+            <td colspan=4 class="cyan"></td>
+            <td rowspan=4 class="lightyellow"></td>
+        </tr>
+        <tr>
+
+            <td rowspan=2 class="lightyellow"></td>
+            <td class="red1"></td>
+            <td class="blue"></td>
+            <td rowspan=2 class="lightyellow"></td>
+        </tr>
+        <tr>
+
+            <td class="green"></td>
+            <td class="yellow"></td>
+
+
+        </tr>
+
+        <tr>
+            <td colspan=4 class="cyan"></td>
+
+
+        </tr>
+        <tr>
+            <td colspan=6 class="cyan"></td>
+        </tr>
+        <tr>
+            <td colspan=8 class="cyan"></td>
+        </tr>
+    </table>
+
+
+    <table>
+        <tr>
+            <td colspan="2" class="white"></td>
+            <td colspan="3" class="white"></td>
+            <td colspan="3" class="yellow"></td>
+
+        </tr>
+        <tr>
+            <td rowspan="2" class="white"></td>
+
+            <td colspan="3" rowspan="3" class="red"></td>
+            <td colspan="2" class="yellow"></td>
+
+
+        </tr>
+        <tr>
+
+            <td rowspan="2" rowspan="2" class="white"></td>
+            <td rowspan="2" rowspan="2" class="white"></td>
+        </tr>
+
+        <td rowspan="2" rowspan="2" class="white"></td>
+        <tr>
+            <td colspan="1" class="black1"></td>
+            <td rowspan="2" class="white"></td>
+            <td rowspan="2" class="white"></td>
+            <td colspan="2" class="blue"></td>
+        </tr>
+        <td rowspan="2" rowspan="2" class="yellow"></td>
+        <td rowspan="2" rowspan="2" class="white"></td>
+        <td rowspan="2" rowspan="2" class="black"></td>
+        <td colspan="2" rowspan="2" class="white"></td>
+        <tr></tr>
+    </table>
+</body>
+
+</html>

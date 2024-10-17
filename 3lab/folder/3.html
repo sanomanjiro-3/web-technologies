@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анкета</title>
+</head>
+
+<body>
+
+    <form method="post" action="" enctype="multipart/form-data">
+        <fieldset>
+            <legend>Основна інформація</legend>
+            <label for="name">Ім'я:</label>
+            <input type="text" id="name" name="name" required placeholder="Введіть ваше ім'я">
+
+            <label for="surname">Прізвище:</label>
+            <input type="text" id="surname" name="surname" required placeholder="Введіть ваше прізвище">
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required autocomplete="off"
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="example@mail.com">
+
+            <label for="tel">Мобільний номер:</label>
+            <input type="tel" id="tel" name="tel" required pattern="\d{10}" placeholder="Введіть 10-значний номер">
+
+            <label for="dob">Дата народження:</label>
+            <input type="date" id="dob" name="dob" required>
+        </fieldset>
+
+        <fieldset>
+            <legend>Питання 1</legend>
+            <label for="question1_a">Варіант 1:</label>
+            <input type="radio" id="question1_a" name="question1" value="option1" tabindex="6">
+            <label for="question1_a">Опція 1</label><br>
+
+            <label for="question1_b">Варіант 2:</label>
+            <input type="radio" id="question1_b" name="question1" value="option2" tabindex="7">
+            <label for="question1_b">Опція 2</label><br>
+
+            <label for="question1_c">Варіант 3:</label>
+            <input type="radio" id="question1_c" name="question1" value="option3" tabindex="8">
+            <label for="question1_c">Опція 3</label><br>
+        </fieldset>
+
+        <fieldset>
+            <legend>Питання 2</legend>
+            <label for="question2_a">Варіант 1:</label>
+            <input type="radio" id="question2_a" name="question2" value="option1" tabindex="9">
+            <label for="question2_a">Опція 1</label><br>
+
+            <label for="question2_b">Варіант 2:</label>
+            <input type="radio" id="question2_b" name="question2" value="option2" tabindex="10">
+            <label for="question2_b">Опція 2</label><br>
+
+            <label for="question2_c">Варіант 3:</label>
+            <input type="radio" id="question2_c" name="question2" value="option3" checked tabindex="11">
+            <label for="question2_c">Опція 3</label><br>
+        </fieldset>
+
+        <fieldset>
+            <legend>Ваші інтереси</legend>
+            <label>Оберіть ваші інтереси:</label><br>
+            <input type="checkbox" id="interest1" name="interest1" value="interest1" tabindex="12">
+            <label for="interest1">Інтерес 1</label><br>
+            <input type="checkbox" id="interest2" name="interest2" value="interest2" tabindex="13">
+            <label for="interest2">Інтерес 2</label><br>
+            <input type="checkbox" id="interest3" name="interest3" value="interest3" tabindex="14">
+            <label for="interest3">Інтерес 3</label><br>
+            <input type="checkbox" id="interest4" name="interest4" value="interest4" tabindex="15">
+            <label for="interest4">Інтерес 4</label><br>
+        </fieldset>
+
+        <fieldset>
+            <legend>Вибір зі списку</legend>
+            <label for="dropdown">Оберіть опцію:</label>
+            <select id="dropdown" name="dropdown" tabindex="16">
+                <option value="option1">Опція 1</option>
+                <option value="option2">Опція 2</option>
+                <option value="option3" selected>Опція 3</option>
+                <option value="option4">Опція 4</option>
+                <option value="option5">Опція 5</option>
+            </select><br><br>
+
+            <label for="multiple-select">Оберіть кілька опцій:</label>
+            <select id="multiple-select" name="multiple-select[]" multiple tabindex="17">
+                <option value="value1">Значення 1</option>
+                <option value="value2">Значення 2</option>
+                <option value="value3">Зченнная 3</option>
+                <option value="value4">Значення 4</option>
+                <option value="value5">Значення 5</option>
+                <option value="value6">Значення 6</option>
+            </select><br><br>
+
+            <label for="group-select">Оберіть групу опцій:</label>
+            <select id="group-select" name="group-select" tabindex="18">
+                <optgroup label="Група 1">
+                    <option value="group1_option1">Група 1, Опція 1</option>
+                    <option value="group1_option2">Група 1, Опція 2</option>
+                    <option value="group1_option3">Група 1, Опція 3</option>
+                </optgroup>
+                <optgroup label="Група 2">
+                    <option value="group2_option1">Група 2, Опція 1</option>
+                    <option value="group2_option2">Група 2, Опція 2</option>
+                    <option value="group2_option3">Група 2, Опція 3</option>
+                </optgroup>
+                <optgroup label="Група 3">
+                    <option value="group3_option1">Група 3, Опція 1</option>
+                    <option value="group3_option2">Група 3, Опція 2</option>
+                    <option value="group3_option3">Група 3, Опція 3</option>
+                </optgroup>
+                <optgroup label="Група 4">
+                    <option value="group4_option1">Група 4, Опція 1</option>
+                    <option value="group4_option2">Група 4, Опція 2</option>
+                    <option value="group4_option3">Група 4, Опція 3</option>
+                </optgroup>
+            </select><br><br>
+        </fieldset>
+
+        <fieldset>
+            <legend>Додаткові можливості</legend>
+            <label for="datalist">Оберіть з підказками:</label>
+            <input list="datalist-options" id="datalist" name="datalist" placeholder="Оберіть опцію" tabindex="19">
+            <datalist id="datalist-options">
+                <option value="Опція 1">
+                <option value="Опція 2">
+                <option value="Опція 3">
+                <option value="Опція 4">
+                <option value="Опція 5">
+            </datalist><br><br>
+
+            <label for="file-upload">Завантажити аудіофайли:</label>
+            <input type="file" id="file-upload" name="file-upload[]" accept="audio/*" multiple tabindex="20"><br><br>
+
+            <label for="comments">Додаткові коментарі:</label><br>
+            <textarea id="comments" name="comments" rows="4" cols="50" placeholder="Ваші коментарі"
+                tabindex="21"></textarea><br><br>
+        </fieldset>
+
+        <input type="submit" value="Відправити" tabindex="22">
+        <input type="reset" value="Скинути" tabindex="23">
+    </form>
+
+</body>
+
+</html>
