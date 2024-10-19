@@ -1,0 +1,143 @@
+/* 3.1 Set purple color for all links */
+a {
+    color: purple;
+}
+
+/* 3.2 Set green color for links in the main menu */
+a.main {
+    color: green;
+}
+
+/* 3.3 Change marker to square for the berries submenu */
+ul.berries {
+    list-style-type: square;
+}
+
+/* 3.4 Change marker to an image for the vegetables submenu */
+ul.vegetables {
+    list-style-type:armenian;
+    list-style-image: url('checkmark.png');
+    /* Replace with the correct path to your image */
+}
+
+/* 3.5 Remove markers for nested lists */
+ul ul {
+    list-style: none;
+}
+
+/* 3.6 Remove underline from links in the berries submenu */
+ul.berries a {
+    text-decoration: none;
+}
+
+/* 3.7 Set proper marker alignment for the "Різне" block */
+ol {
+    list-style-position: inside;
+}
+
+
+
+
+.text-background {
+    font-style: italic;
+    font-weight: bold;
+    text-decoration: underline;
+    display: inline;
+
+}
+
+/* 4.2 Yellow background for span inside div .text-background */
+div .text-background {
+    background-color: yellow;
+
+}
+
+/* 4.3 Gray background, strikethrough for span inside span */
+.span1 {
+    background-color: gray;
+    text-decoration: line-through;
+    text-transform: uppercase;
+}
+
+.span2 {
+    background-color: gray;
+    text-decoration: line-through;
+}
+
+/* 4.4 Uppercase, font-size for span inside span in ol */
+ol span span {
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+section>p {
+    text-shadow: 3px 3px 5px red;
+    text-indent: 50px;
+}
+
+/* 4.5 Text shadow and indent for p inside section */
+section1>p {
+    text-shadow: 3px 3px 5px red;
+    text-indent: 50px;
+}
+
+/* 4.6 List item marker changed to image */
+ul>li ul {
+    list-style-image: url('marker.png');
+}
+
+/* 4.7 Word spacing for p.text-background inside div */
+div>p.text-background {
+    word-spacing: 50px;
+}
+
+/* 4.8 Bold font for p inside div.text-bold */
+div.text-bold>p {
+    font-weight: bold;
+}
+
+/* 4.9 Line-height for p inside section inside div.text-bold */
+div.text-bold>section>p {
+    line-height: 45px;
+}
+
+/* 4.10 Brown background for p directly after img */
+img+p {
+    background-color: brown;
+}
+
+/* 4.11 Red text color for p following section */
+section~p {
+    color: red;
+}
+
+.second-block {
+    word-spacing: 50px;
+}
+
+.checkmark-list {
+    list-style: none;
+    /* Remove default bullets */
+    padding: 0;
+    /* Remove default padding */
+}
+
+.checkmark-list li {
+    position: relative;
+    /* Create a positioning context */
+    padding-left: 20px;
+    /* Space for the checkmark */
+}
+
+.checkmark-list li::before {
+    content: '✔';
+    /* The checkmark */
+    position: absolute;
+    /* Position the checkmark */
+    left: 0;
+    /* Align to the left */
+    color: green;
+    /* Change color of checkmark */
+    font-weight: bold;
+    /* Make it bold */
+}
