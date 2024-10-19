@@ -1,0 +1,90 @@
+/* Стиль основного контейнера */
+.travel-plan {
+    background-color: rgb(255, 165, 0);
+    /* Колір фону */
+    width: 500px;
+    /* Ширина блоку */
+    padding: 20px;
+    /* Внутрішній відступ */
+    color: white;
+    /* Колір тексту */
+}
+
+/* Стиль заголовка 1-го рівня */
+.travel-plan h1 {
+    font-size: 25px;
+    /* Розмір тексту */
+    font-weight: 900;
+    /* Насиченість шрифту */
+    margin-bottom: 10px;
+    /* Зовнішній відступ */
+}
+
+/* Стиль основного списку */
+.main-list {
+    list-style: none;
+ 
+    /* Вимикає стандартні маркери списку */
+    /* Колір фону */
+    padding-right: 20px;
+    /* Внутрішній відступ справа */
+    padding-left: 10px;
+    /* Внутрішній відступ зліва */
+}
+.main-list>li {
+    background-color: rgb(103, 158, 128);
+}
+/* Спан в елементах основного списку */
+.main-list>li>span {
+    background-color: lightcoral;
+    display: inline-block;
+    /* Рядково-блочний тип */
+    font-size: 20px;
+    /* Розмір тексту */
+    font-weight: 700;
+    /* Насиченість шрифту */
+    /* Колір фону */
+    margin-bottom: 10px;
+    margin-left: 10px;
+    padding: 10px;
+    /* Зовнішній відступ */
+    /* Внутрішній відступ */
+}
+
+/* Стиль підсписку (2-го рівня) */
+.sub-list {
+    list-style: none;
+    /* Вимикає стандартні маркери списку */
+    /* Колір фону */
+    margin-bottom: 10px;
+    /* Зовнішній відступ */
+    padding-left: 40px;
+    /* Внутрішній відступ зліва */
+}
+
+/* Спан в елементах підсписку */
+.sub-list>li>span {
+    display: inline-block;
+    /* Рядково-блочний тип */
+    font-size: 18px;
+    /* Розмір тексту */
+    font-style: italic;
+    /* Курсив */
+    background-color: rgb(218, 106, 32);
+    /* Колір фону */
+    padding: 10px 20px;
+    /* Внутрішній відступ */
+    /* Зовнішній відступ */
+}
+
+/* Стиль для маркерів (використання зображення) */
+.sub-list>li {
+    background-color: rgb(153, 180, 102);
+
+    /* Замініть на реальний шлях до зображення */
+    background-position: left center;
+    background-repeat: no-repeat;
+    background-size: 24px 24px;
+    margin: 10px;
+    /* Розмір маркера */
+}

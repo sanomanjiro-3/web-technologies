@@ -1,0 +1,79 @@
+/* Стиль для всієї таблиці */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+/* Стиль для заголовків таблиці */
+thead th {
+    background-color: #f4d7d7;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+}
+
+/* Стиль для тіла таблиці */
+tbody td {
+    padding: 20px;
+    color: #fff;
+}
+
+/* Чергування кольорів для рядків таблиці */
+tbody tr:nth-child(odd) {
+    background-color: #f0b2b2;
+    /* світліший */
+}
+
+tbody tr:nth-child(even) {
+    background-color: #cf4e4e;
+    /* темніший */
+}
+
+/* Стиль для першого стовпця (план) */
+tbody td:first-child {
+    font-weight: bold;
+}
+
+/* Стиль для клітинок з текстом "+" */
+tbody td:contains('+') {
+    background-color: #e58f8f;
+    /* світліший відтінок для плюса */
+}
+
+/* Стиль для клітинок з текстом "-" */
+tbody td:contains('-') {
+    background-color: #f7c7c7;
+    /* світліший відтінок для мінуса */
+}
+
+/* Стиль для різних заголовків */
+.b1 {
+    color: white;
+    background-color: #ef7d7d;
+}
+
+.b2 {
+    color: white;
+    background-color: #b13a3a;
+}
+
+.b3 {
+    color: white;
+    background-color: #911e1e;
+}
+
+.b4 {
+    color: white;
+    background-color: #651a1a;
+}
+
+/* Стиль для першого стовпця (план) */
+tbody td:first-child {
+    background-color: #911e1e;
+    /* більш насичений колір для першого стовпця */
+    font-weight: bold;
+}
+
