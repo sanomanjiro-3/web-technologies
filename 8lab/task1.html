@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lab 8.1</title>
+</head>
+<style>
+    .day{
+        display: flex;
+        justify-content: space-between;
+        height: 100px;
+    }
+    .day::before{
+        content: "";
+        position: absolute;
+        width: 95%;
+        height: 2px;
+        right: 2.5%;
+        background-color: rgb(184, 184, 184);
+    }
+
+    .title{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 10px 20px;
+        font-weight: 800;
+        width: 50px;
+
+    }
+    .temperature{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 10px 20px;
+
+    }
+    .temperature>p{
+        margin: 0;
+    }
+    .temperature>p:nth-last-child(1){
+        color: rgb(121, 121, 121);
+    }
+    .pollen{
+        display: flex;
+        flex-direction:row;
+        justify-content: center;
+        margin: 10px 20px;
+        padding: 9px;
+
+    }
+    .pollen_placeholder{
+        margin-right: 5px;
+        color: rgb(121, 121, 121);
+    }
+    .header{
+        height: max-content;
+        padding-bottom: 5px;
+    }
+    .city{
+        font-weight: 800;
+        font-size: xxx-large;
+        width: 100%;
+        margin: 0;
+        margin-left: 20px;
+    }
+    .weather-type,
+    .date{
+        margin: 0;
+        margin-left: 20px;
+        color: rgb(121, 121, 121);
+    }
+    .weather{
+        display: flex;
+        height: 140px;
+    }
+    .info{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        margin: 10px 20px;
+        max-width: 50%;
+    }
+    .info>img{
+        height: 80%;
+    }
+    .info>p{
+        margin: 0;
+    }
+    .temp-num{
+        font-size: xxx-large;
+        color: rgb(73, 73, 73);
+        
+    }
+    .temp-unit{
+        font-size: large;
+        padding-top: 10px;
+        color: rgb(121, 121, 121);
+
+    }
+
+    .advanced-info p{
+        margin: 0;
+    }
+
+    .advanced-info{
+        display: flex;
+        flex-direction: column;
+        margin: 2px 0px;
+    }
+    .advanced-info>.item{
+        display: flex;
+        flex-direction: row;
+        margin: 3px 0px;
+    }
+    .advanced-info>.item>p:nth-child(1){
+        color: rgb(121, 121, 121);
+        margin-right: 5px;
+    }
+
+
+
+
+</style>
+<body>
+    <div class="header">
+        <p class="city">New York, NY</p>
+        <p class="date">Tuesday, April 15th</p>
+        <p class="weather-type">Ocarcast</p>
+        <div class="weather">
+            <div class="info">
+                <img src="icons/iconfinder_weather04.png" alt="">
+                <p class="temp-num">58</p>
+                <p class="temp-unit">&deg;F</p>
+            </div>
+            <div class="advanced-info">
+                <div class="item">
+                    <p>Precipitation:</p>
+                    <p>100%</p>
+                </div>
+                <div class="item">
+                    <p>Humidity:</p>
+                    <p>97%</p>
+                </div>
+                <div class="item">
+                    <p>Wind:</p>
+                    <p>4 mph SW</p>
+                </div>
+                <div class="item">
+                    <p>Pollen Count:</p>
+                    <p>36</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="day">
+        <p class="title">Today</p>
+        <img src="icons/iconfinder_weather01.png" alt="">
+        <div class="temperature">
+            <p>68&deg;</p>
+            <p>36&deg;</p>
+        </div>
+        <div class="pollen">
+            <p class="pollen_placeholder">Pollen</p>
+            <p>34</p>
+        </div>
+    </div>
+
+
+    <div class="day">
+        <p class="title">Wednesday</p>
+        <img src="icons/iconfinder_weather02.png" alt="">
+        <div class="temperature">
+            <p>50&deg;</p>
+            <p>39&deg;</p>
+        </div>
+        <div class="pollen">
+            <p class="pollen_placeholder">Pollen</p>
+            <p>34</p>
+        </div>
+    </div>
+
+    <div class="day">
+        <p class="title">Thursday</p>
+        <img src="icons/iconfinder_weather03.png" alt="">
+        <div class="temperature">
+            <p>55&deg;</p>
+            <p>39&deg;</p>
+        </div>
+        <div class="pollen">
+            <p class="pollen_placeholder">Pollen</p>
+            <p>34</p>
+        </div>
+    </div>
+
+    <div class="day">
+        <p class="title">Friday</p>
+        <img src="icons/iconfinder_weather03.png" alt="">
+        <div class="temperature">
+            <p>54&deg;</p>
+            <p>43&deg;</p>
+        </div>
+        <div class="pollen">
+            <p class="pollen_placeholder">Pollen</p>
+            <p>34</p>
+        </div>
+    </div>
+
+    <div class="day">
+        <p class="title">Saturday</p>
+        <img src="icons/iconfinder_weather05.png" alt="">
+        <div class="temperature">
+            <p>64&deg;</p>
+            <p>46&deg;</p>
+        </div>
+        <div class="pollen">
+            <p class="pollen_placeholder">Pollen</p>
+            <p>34</p>
+        </div>
+    </div>
+
+
+    <div class="day">
+        <p class="title">Sunday</p>
+        <img src="icons/iconfinder_weather06.png" alt="">
+        <div class="temperature">
+            <p>64&deg;</p>
+            <p>50&deg;</p>
+        </div>
+        <div class="pollen">
+            <p class="pollen_placeholder">Pollen</p>
+            <p>34</p>
+        </div>
+    </div>
+
+    <div class="day">
+        <p class="title">Monday</p>
+        <img src="icons/iconfinder_weather07.png" alt="">
+        <div class="temperature">
+            <p>61&deg;</p>
+            <p>50&deg;</p>
+        </div>
+        <div class="pollen">
+            <p class="pollen_placeholder">Pollen</p>
+            <p>34</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,136 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.container {
+    position: relative;
+}
+
+
+
+.block {
+    padding: 20px;
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    border: 1px solid black;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.block-1 {
+    width: 100px;
+    background-color: #008000;
+}
+
+.block-2 {
+    width: 400px;
+    height: 300px;
+    background-color: #4682B4;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    display: none;
+}
+
+.block-3 {
+    width: 300px;
+    background-color: #6A5ACD;
+    position: absolute;
+    top: 0px;
+    left: 100px;
+    display: none;
+    z-index: -1;
+}
+
+/* Keep Block 2 visible when hovering over Block 1 or Block 2 */
+.block-1:hover+.block-2,
+.block-2:hover {
+    display: block;
+}
+
+/* Keep Block 3 visible when hovering over Block 2 or Block 3 */
+.block-2:hover+.block-3,
+.block-3:hover {
+    display: block;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.container {
+    position: relative;
+    width: 500px;
+    height: 250px;
+}
+
+.block {
+    padding: 20px;
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+
+
+.large-block1 {
+    position: relative;
+    width: 200px;
+    height: 100px;
+    background-color: #8fc5d8;
+    color: black;
+    z-index: 1;
+    top: 50px;
+    left: 50px;
+}
+
+.large-block2 {
+    position: relative;
+    width: 200px;
+    height: 100px;
+    background-color: #8fc5d8;
+    color: black;
+    z-index: 1;
+    top: -60px;
+    left: 270px;
+}
+
+.small-block {
+    position: absolute;
+    width: 150px;
+    height: 80px;
+    background-color: #003366;
+}
+
+.small-block-1 {
+    top: 0;
+    left: -50px;
+    z-index: 2;
+}
+
+.small-block-2 {
+    top: 0;
+    left: 190px;
+    z-index: 3;
+}
