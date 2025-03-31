@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Лампочка</title>
+    <style>
+        /* Стилі для лампочок */
+        .lamp-off {
+            background-color: gray;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+        .lamp-on {
+            background-color: yellow;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+        .lamp-bright {
+            opacity: 0.5; /* Можна змінювати через input */
+        }
+        #lamp {
+            width: 100px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: gray;
+        }
+    </style>
+</head>
+<body>
+    <button id="lampButton">Включити</button>
+    <img id="lamp" src="lamp_off.jpg" alt="Лампочка" class="lamp-off">
+    <select id="lampType">
+        <option value="normal">Звичайна лампочка</option>
+        <option value="brightness">Лампочка з регуляцією яскравості</option>
+    </select>
+    <input type="range" id="brightness" min="0" max="100" value="100" step="1" disabled>
+    
+    <script src="script.js"></script>
+</body>
+</html>
