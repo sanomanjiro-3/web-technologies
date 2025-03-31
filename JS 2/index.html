@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тестування функцій</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .container { max-width: 600px; margin: 20px auto; }
+        input, button { margin: 5px 0; display: block; width: 100%; padding: 5px; }
+        #output { margin-top: 10px; padding: 10px; background: #f3f3f3; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Тестування функцій</h2>
+
+        <h3>1. Знайти мінімум і максимум</h3>
+        <input type="text" id="arrayInput" placeholder="Введіть числа через кому">
+        <button onclick="testFindMinMax()">Перевірити</button>
+
+        <h3>2. Чи міститься число у масиві?</h3>
+        <input type="text" id="arrayInputCheck" placeholder="Введіть числа через кому">
+        <input type="number" id="numberCheck" placeholder="Число для перевірки">
+        <button onclick="testNumberInArray()">Перевірити</button>
+        
+        <h3>3. Число в діапазоні</h3>
+        <input type="number" id="numCheck" placeholder="Число">
+        <input type="number" id="rangeMin" placeholder="Мінімум">
+        <input type="number" id="rangeMax" placeholder="Максимум">
+        <button onclick="testIsInRange()">Перевірити</button>
+
+        <h3>4. Оцінка</h3>
+        <input type="number" id="grade" placeholder="Введіть оцінку">
+        <button onclick="testGetGradeDescription()">Перевірити</button>
+
+        <h3>5. Пора року</h3>
+        <input type="number" id="month" placeholder="Введіть номер місяця (1-12)">
+        <button onclick="testGetSeason()">Перевірити</button>
+
+        <h3>Результати:</h3>
+        <div id="output"></div>
+    </div>
+
+    <script src="lab2.js"></script>
+    <script src="test.js"></script>
+</body>
+</html>
