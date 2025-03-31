@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Світлофор</title>
+    <style>
+        #trafficLight {
+            width: 100px;
+            height: 300px;
+            border: 5px solid black;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 10px;
+        }
+
+        .light {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            opacity: 0.3;
+            transition: opacity 0.5s ease;
+        }
+
+        .red {
+            background-color: red;
+        }
+
+        .yellow {
+            background-color: yellow;
+        }
+
+        .green {
+            background-color: green;
+        }
+
+        .blinking {
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            0% { opacity: 0.3; }
+            50% { opacity: 1; }
+            100% { opacity: 0.3; }
+        }
+
+        #status {
+            margin-top: 20px;
+        }
+
+        button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="trafficLight">
+        <div id="redLight" class="light red"></div>
+        <div id="yellowLight" class="light yellow"></div>
+        <div id="greenLight" class="light green"></div>
+    </div>
+
+    <div id="status">Поточний стан: червоний</div>
+    <button id="nextStateButton">Наступний стан</button>
+
+    <script src="traffic_light.js"></script>
+</body>
+</html>

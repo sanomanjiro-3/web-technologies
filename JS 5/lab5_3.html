@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дата та час</title>
+    <style>
+        .clock { font-size: 2em; margin: 20px; }
+        .timer { font-size: 1.5em; margin: 20px; }
+        .calendar { margin: 20px; }
+        .birthday { font-size: 1.5em; margin: 20px; }
+        .blinking { animation: blink 1s infinite; }
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Цифровий годинник -->
+    <div id="clock" class="clock"></div>
+
+    <!-- Таймер зворотного відліку -->
+    <div class="timer">
+        <input type="datetime-local" id="countdownInput">
+        <button id="startCountdown">Запустити таймер</button>
+        <div id="countdown"></div>
+    </div>
+
+    <!-- Календар -->
+    <div class="calendar">
+        <input type="month" id="monthInput" value="2025-03">
+        <button id="showMonth">Показати місяць</button>
+        <div id="monthDisplay"></div>
+    </div>
+
+    <!-- День народження -->
+    <div class="birthday">
+        <input type="date" id="birthdayInput">
+        <button id="calculateBirthday">Порахувати час до дня народження</button>
+        <div id="birthdayResult"></div>
+    </div>
+
+    <script src="clock.js"></script>
+</body>
+</html>
