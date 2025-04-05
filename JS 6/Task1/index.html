@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Список товарів</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Список товарів</h1>
+    <p id="total-price">Загальна вартість: 0 грн</p>
+  </header>
+
+  <main>
+    <div id="filters"></div>
+    <div id="sort-options">
+      <button onclick="sortByPrice()">Сортувати за ціною</button>
+      <button onclick="sortByCreateDate()">Сортувати за датою створення</button>
+      <button onclick="sortByUpdateDate()">Сортувати за датою оновлення</button>
+      <button onclick="resetSort()">Скинути сортування</button>
+    </div>
+
+    <div id="product-list" class="product-list">
+      <p class="empty-text">Наразі список товарів пустий. Додайте новий товар.</p>
+    </div>
+
+    <button id="addProductBtn">Додати новий товар</button>
+  </main>
+
+  <!-- Modal -->
+  <div id="modal" class="modal hidden">
+    <form id="productForm">
+      <h2 id="modalTitle">Новий товар</h2>
+      <input required type="text" name="title" placeholder="Назва товару" />
+      <input required type="number" name="price" placeholder="Ціна" />
+      <input required type="text" name="category" placeholder="Категорія" />
+      <input required type="url" name="image" placeholder="URL зображення" />
+      <input type="hidden" name="id">
+      <button type="submit">Зберегти</button>
+      <button type="button" onclick="closeModal()">Скасувати</button>
+    </form>
+  </div>
+
+  <!-- Snackbar -->
+  <div id="snackbar"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

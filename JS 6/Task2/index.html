@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>To-do список</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>To-do список</h1>
+  </header>
+
+  <main>
+    <form id="todoForm">
+      <input type="text" id="taskInput" placeholder="Нова задача..." required />
+      <button type="submit">Додати</button>
+    </form>
+
+    <div id="filterBlock">
+      <button onclick="setFilter('all')">Всі</button>
+      <button onclick="setFilter('active')">Активні</button>
+      <button onclick="setFilter('completed')">Виконані</button>
+    </div>
+
+    <ul id="todoList" class="todo-list"></ul>
+  </main>
+
+  <!-- Snackbar -->
+  <div id="snackbar"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
