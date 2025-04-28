@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanban Board</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Kanban Board</h1>
+    <div class="board">
+        <div class="column" id="todo" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <h2>To Do</h2>
+            <div id="task1" class="task" draggable="true" ondragstart="drag(event)">Task 1</div>
+            <div id="task2" class="task" draggable="true" ondragstart="drag(event)">Task 2</div>
+            <div id="task3" class="task" draggable="true" ondragstart="drag(event)">Task 3</div>
+            <div id="task4" class="task" draggable="true" ondragstart="drag(event)">Task 4</div>
+            <div id="task5" class="task" draggable="true" ondragstart="drag(event)">Task 5</div>
+            <div id="task6" class="task" draggable="true" ondragstart="drag(event)">Task 6</div>
+            <div id="task7" class="task" draggable="true" ondragstart="drag(event)">Task 7</div>
+            <div id="task8" class="task" draggable="true" ondragstart="drag(event)">Task 8</div>
+            <div id="task9" class="task" draggable="true" ondragstart="drag(event)">Task 9</div>
+            <div id="task10" class="task" draggable="true" ondragstart="drag(event)">Task 10</div>
+            <div id="task11" class="task" draggable="true" ondragstart="drag(event)">Task 11</div>
+            <div id="task12" class="task" draggable="true" ondragstart="drag(event)">Task 12</div>
+            <div id="task13" class="task" draggable="true" ondragstart="drag(event)">Task 13</div>
+            <div id="task14" class="task" draggable="true" ondragstart="drag(event)">Task 14</div>
+
+        </div>
+        <div class="column" id="in-progress" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <h2>In Progress</h2>
+        </div>
+        <div class="column" id="done" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <h2>Done</h2>
+        </div>
+    </div>
+    <script src="kanban.js"></script>
+</body>
+</html>
