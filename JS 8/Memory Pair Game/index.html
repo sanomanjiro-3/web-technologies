@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="player-form" class="form-container">
+        <label for="nickname">Введіть ваш нікнейм:</label>
+        <input type="text" id="nickname" required placeholder="Нікнейм">
+        <label for="grid-size">Вибір розміру поля:</label>
+        <select id="grid-size">
+            <option value="4">4x4</option>
+            <option value="5">5x5</option>
+            <option value="6">6x6</option>
+            <option value="7">7x7</option>
+        </select>
+        <label for="difficulty">Вибір складності:</label>
+        <select id="difficulty">
+            <option value="easy">Легкий (3 хв.)</option>
+            <option value="normal">Середній (2 хв.)</option>
+            <option value="hard">Складний (1 хв.)</option>
+        </select>
+        <button id="start-game">Розпочати гру</button>
+    </div>
+
+    <div id="game-container" class="game-container" style="display: none;">
+        <h2>Гравець: <span id="player-name"></span></h2>
+        <div class="game-board" id="game-board"></div>
+        <div id="timer">Час: 00:00</div>
+        <div id="moves">Кількість ходів: 0</div>
+        <button id="reset-game" style="display: none;">Рестарт</button>
+        <button id="view-stats" style="display: none;">Статистика</button>
+    </div>
+
+    <div id="stats" style="display: none;">
+        <h2>Статистика гравців</h2>
+        <ul id="stats-list"></ul>
+        <button id="close-stats">Закрити</button>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
