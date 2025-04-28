@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Гра: ЛР №7</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>Лабораторна №7: Гра</h1>
+  <div id="game-container">
+    <canvas id="game-canvas" width="800" height="600"></canvas>
+  </div>
+
+  <div id="controls">
+    <button id="start-btn">Старт</button>
+    <button id="pause-btn">Пауза</button>
+    <button id="restart-btn">Перезапустити</button>
+    <div id="score">Очки: 0</div>
+  </div>
+
+  <audio id="collect-sound" src="audio/collect.mp3"></audio>
+  <audio id="gameover-sound" src="audio/gameover.mp3"></audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
