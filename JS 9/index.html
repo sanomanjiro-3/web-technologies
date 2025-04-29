@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Форма реєстрації та авторизації</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="tabs">
+      <button class="tab active" data-tab="register">Реєстрація</button>
+      <button class="tab" data-tab="login">Авторизація</button>
+    </div>
+
+    <form id="register-form" class="form active">
+      <h2>Реєстрація</h2>
+      <div class="form-group">
+        <label>First Name</label>
+        <input type="text" name="firstName" required />
+        <small></small>
+      </div>
+      <div class="form-group">
+        <label>Last Name</label>
+        <input type="text" name="lastName" required />
+        <small></small>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" name="email" required />
+        <small></small>
+      </div>
+      <div class="form-group password-field">
+        <label>Password</label>
+        <input type="password" name="password" required />
+        <span class="toggle-eye">👁</span>
+        <small></small>
+      </div>
+      <div class="form-group password-field">
+        <label>Confirm Password</label>
+        <input type="password" name="confirmPassword" required />
+        <span class="toggle-eye">👁</span>
+        <small></small>
+      </div>
+      <div class="form-group">
+        <label>Phone</label>
+        <input type="tel" name="phone" required />
+        <small></small>
+      </div>
+      <div class="form-group">
+        <label>Date of Birth</label>
+        <input type="date" name="dob" required />
+        <small></small>
+      </div>
+      <div class="form-group">
+        <label>Sex</label>
+        <select name="sex" required>
+          <option value="">Оберіть</option>
+          <option value="male">Чоловік</option>
+          <option value="female">Жінка</option>
+        </select>
+        <small></small>
+      </div>
+      <div class="form-group">
+        <label>Country</label>
+        <select name="country" required></select>
+        <small></small>
+      </div>
+      <div class="form-group">
+        <label>City</label>
+        <select name="city" disabled required></select>
+        <small></small>
+      </div>
+      <button type="submit">Зареєструватися</button>
+    </form>
+
+    <form id="login-form" class="form">
+      <h2>Авторизація</h2>
+      <div class="form-group">
+        <label>Username</label>
+        <input type="text" name="username" required />
+        <small></small>
+      </div>
+      <div class="form-group password-field">
+        <label>Password</label>
+        <input type="password" name="loginPassword" required />
+        <span class="toggle-eye">👁</span>
+        <small></small>
+      </div>
+      <div class="form-group checkbox">
+        <input type="checkbox" name="remember" />
+        <label>Запам'ятати мене</label>
+      </div>
+      <button type="submit">Увійти</button>
+    </form>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
