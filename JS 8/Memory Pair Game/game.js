@@ -1,189 +1,146 @@
-let nickname = '';
-let gridSize = 4;
-let difficulty = 'easy';
-let timeLimit = 180;  // default to easy (3 mins)
-let gameTimer;
-let moves = 0;
-let timerInterval;
-let stats = [];
-
-// Отримуємо елементи
-const startGameBtn = document.getElementById('start-game');
-const resetGameBtn = document.getElementById('reset-game');
+const startForm = document.getElementById('settings-form');
+const resetBtn = document.getElementById('reset-settings');
+const welcomeScreen = document.getElementById('settings-screen');
+const gameScreen = document.getElementById('game-screen');
+const statsScreen = document.getElementById('stats-screen');
 const gameBoard = document.getElementById('game-board');
 const timerDisplay = document.getElementById('timer');
 const movesDisplay = document.getElementById('moves');
-const playerForm = document.getElementById('player-form');
-const gameContainer = document.getElementById('game-container');
-const statsContainer = document.getElementById('stats');
+const playerNameDisplay = document.getElementById('player-name-display');
+const restartBtn = document.getElementById('restart-btn');
 const statsList = document.getElementById('stats-list');
-const closeStatsBtn = document.getElementById('close-stats');
-const viewStatsBtn = document.getElementById('view-stats');
+const backToGameBtn = document.getElementById('back-to-game');
+let cards = [];
+let flippedCards = [];
+let moves = 0;
+let timer = 0;
+let gameInterval;
+let playerName = '';
+let gameSize = '4x4';
+let difficulty = 'easy';
+let stats = [];
 
-// Вибір нікнейму та налаштувань
-startGameBtn.addEventListener('click', function () {
-    nickname = document.getElementById('nickname').value;
-    gridSize = parseInt(document.getElementById('grid-size').value);
+startForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    playerName = document.getElementById('player-name-1').value;
+    gameSize = document.getElementById('board-size').value;
     difficulty = document.getElementById('difficulty').value;
-
-    if (difficulty === 'easy') timeLimit = 180;
-    else if (difficulty === 'normal') timeLimit = 120;
-    else if (difficulty === 'hard') timeLimit = 60;
-
-    document.getElementById('player-name').textContent = nickname;
-    playerForm.style.display = 'none';
-    gameContainer.style.display = 'block';
-
+    playerNameDisplay.textContent = playerName;
+    welcomeScreen.style.display = 'none';
+    gameScreen.style.display = 'block';
     startGame();
 });
 
-// Старт гри
+resetBtn.addEventListener('click', () => {
+    document.getElementById('player-name-1').value = '';
+    document.getElementById('board-size').value = '4x4';
+    document.getElementById('difficulty').value = 'easy';
+});
+
+restartBtn.addEventListener('click', startGame);
+
 function startGame() {
     resetGame();
-    generateBoard();
+    createBoard();
     startTimer();
-    moves = 0;
-    updateMoves();
-
-    resetGameBtn.style.display = 'block';
-    viewStatsBtn.style.display = 'block';
 }
 
-// Генерація ігрового поля
-function generateBoard() {
-    const cards = [];
-    const totalCards = gridSize * gridSize;
+function resetGame() {
+    moves = 0;
+    flippedCards = [];
+    cards = [];
+    movesDisplay.textContent = moves;
+    timer = 0;
+    timerDisplay.textContent = timer;
+    clearInterval(gameInterval);
+}
+
+function createBoard() {
+    const size = parseInt(gameSize.split('x')[0]);
+    const totalCards = size * size;
     const cardValues = [];
-
-    for (let i = 1; i <= totalCards / 2; i++) {
-        cardValues.push(String.fromCharCode(65 + i - 1));  // Використовуємо літери від A до Z
-        cardValues.push(String.fromCharCode(65 + i - 1));  // Повторюємо кожну літеру
+    for (let i = 0; i < totalCards / 2; i++) {
+        cardValues.push(String.fromCharCode(65 + i), String.fromCharCode(65 + i)); // A, B, C, etc.
     }
-
     cardValues.sort(() => Math.random() - 0.5);
 
-    for (let i = 0; i < totalCards; i++) {
+    gameBoard.style.gridTemplateColumns = `repeat(${size}, 100px)`;
+
+    cardValues.forEach((value, index) => {
         const card = document.createElement('div');
         card.classList.add('card');
-        card.id = 'card-' + i;
-        card.textContent = '';  // Спочатку картка порожня
-        card.addEventListener('click', flipCard);
+        card.setAttribute('data-id', index);
+        card.textContent = '';
+        card.addEventListener('click', () => flipCard(card, value));
+        gameBoard.appendChild(card);
         cards.push(card);
-    }
-
-    gameBoard.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
-    gameBoard.innerHTML = '';
-    cards.forEach(card => gameBoard.appendChild(card));
+    });
 }
 
-// Перевернути картку
-let flippedCards = [];
-function flipCard() {
-    if (flippedCards.length < 2 && !this.classList.contains('flipped')) {
-        this.classList.add('flipped');
-        this.textContent = this.textContent || String.fromCharCode(65 + (Math.random() * 26 | 0));  // Випадковий символ
-        flippedCards.push(this);
-
-        if (flippedCards.length === 2) {
-            checkForMatch();
-        }
+function flipCard(card, value) {
+    if (flippedCards.length === 2 || card.textContent !== '') return;
+    card.textContent = value;
+    flippedCards.push({ card, value });
+    if (flippedCards.length === 2) {
+        moves++;
+        movesDisplay.textContent = moves;
+        checkMatch();
     }
 }
 
-// Перевірка на пару
-function checkForMatch() {
-    moves++;
-    updateMoves();
-
-    const [firstCard, secondCard] = flippedCards;
-
-    if (firstCard.textContent === secondCard.textContent) {
+function checkMatch() {
+    if (flippedCards[0].value === flippedCards[1].value) {
         flippedCards = [];
-        checkIfGameFinished();
+        if (cards.every(card => card.textContent !== '')) {
+            endGame(true);
+        }
     } else {
         setTimeout(() => {
-            firstCard.classList.remove('flipped');
-            secondCard.classList.remove('flipped');
-            firstCard.textContent = '';  // Скидаємо текст
-            secondCard.textContent = '';  // Скидаємо текст
+            flippedCards[0].card.textContent = '';
+            flippedCards[1].card.textContent = '';
             flippedCards = [];
         }, 1000);
     }
 }
 
-// Оновлення кількості рухів
-function updateMoves() {
-    movesDisplay.textContent = 'Кількість ходів: ' + moves;
-}
-
-// Перевірка завершення гри
-function checkIfGameFinished() {
-    const allCards = document.querySelectorAll('.card');
-    const flippedCards = document.querySelectorAll('.card.flipped');
-
-    if (allCards.length === flippedCards.length) {
-        endGame();
-    }
-}
-
-// Завершення гри
-function endGame() {
-    clearInterval(timerInterval);
-    alert(`Вітаємо! Ви виграли! Кількість ходів: ${moves}, час: ${timeLimit - remainingTime} секунд`);
-    saveStats();
-}
-
-// Секундомір
-let remainingTime = timeLimit;
 function startTimer() {
-    timerInterval = setInterval(() => {
-        if (remainingTime > 0) {
-            remainingTime--;
-            timerDisplay.textContent = `Час: ${Math.floor(remainingTime / 60)}:${remainingTime % 60}`;
-        } else {
-            endGame();
+    let timeLimit = 180; // Default for "easy"
+    if (difficulty === 'normal') timeLimit = 120;
+    if (difficulty === 'hard') timeLimit = 60;
+
+    gameInterval = setInterval(() => {
+        timer++;
+        timerDisplay.textContent = timer;
+        if (timer >= timeLimit) {
+            endGame(false);
         }
     }, 1000);
 }
 
-// Скидання гри
-function resetGame() {
-    clearInterval(timerInterval);
-    remainingTime = timeLimit;
-    timerDisplay.textContent = `Час: ${Math.floor(remainingTime / 60)}:${remainingTime % 60}`;
-    moves = 0;
-    updateMoves();
-    flippedCards = [];
-    gameBoard.innerHTML = '';
-    playerForm.style.display = 'block';
-    gameContainer.style.display = 'none';
+function endGame(won) {
+    clearInterval(gameInterval);
+    alert(won ? 'Вітаємо, ви виграли!' : 'Час вийшов! Ви програли!');
+    stats.push({
+        player: playerName,
+        moves: moves,
+        time: timer,
+        boardSize: gameSize,
+    });
+    gameScreen.style.display = 'none';
+    statsScreen.style.display = 'block';
+    displayStats();
 }
 
-// Збереження результатів гри
-function saveStats() {
-    const playerStats = {
-        nickname,
-        difficulty,
-        time: timeLimit - remainingTime,
-        moves,
-        gridSize
-    };
-
-    stats.push(playerStats);
+function displayStats() {
+    statsList.innerHTML = '';
+    stats.forEach(stat => {
+        const li = document.createElement('li');
+        li.textContent = `${stat.player} - Розмір поля: ${stat.boardSize}, Ходи: ${stat.moves}, Час: ${stat.time} секунд`;
+        statsList.appendChild(li);
+    });
 }
 
-// Перегляд статистики
-viewStatsBtn.addEventListener('click', () => {
-    statsContainer.style.display = 'block';
-    statsList.innerHTML = stats.map(stat => 
-        `<li>${stat.nickname}: ${stat.difficulty}, Час: ${stat.time} сек, Ходи: ${stat.moves}, Розмір: ${stat.gridSize}x${stat.gridSize}</li>`
-    ).join('');
+backToGameBtn.addEventListener('click', () => {
+    statsScreen.style.display = 'none';
+    welcomeScreen.style.display = 'block';
 });
-
-// Закрити статистику
-closeStatsBtn.addEventListener('click', () => {
-    statsContainer.style.display = 'none';
-    playerForm.style.display = 'block';
-});
-
-resetGameBtn.addEventListener('click', resetGame);
