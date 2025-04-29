@@ -147,6 +147,7 @@ function setupBoard() {
   startTimer(timeLimit);
 }
 
+
 function resetSettings() {
   nameInput.value = '';
   gridSizeSelect.value = '4x4';
@@ -154,7 +155,7 @@ function resetSettings() {
 }
 
 function showStats() {
-  const log = stats.map(s => `${s.name} — ${s.grid}, ${s.moves} ходів, ${s.time} с`).join('\\n');
+  const log = stats.map(s => `${s.name} — ${s.grid}, ${s.moves} ходів, ${s.time} с`).join('\n');
   alert(log || 'Статистики ще немає.');
 }
 

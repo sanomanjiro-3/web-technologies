@@ -1,45 +1,42 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Memory Game</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Memory Pair Game</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="player-form" class="form-container">
-        <label for="nickname">Введіть ваш нікнейм:</label>
-        <input type="text" id="nickname" required placeholder="Нікнейм">
-        <label for="grid-size">Вибір розміру поля:</label>
-        <select id="grid-size">
-            <option value="4">4x4</option>
-            <option value="5">5x5</option>
-            <option value="6">6x6</option>
-            <option value="7">7x7</option>
-        </select>
-        <label for="difficulty">Вибір складності:</label>
-        <select id="difficulty">
-            <option value="easy">Легкий (3 хв.)</option>
-            <option value="normal">Середній (2 хв.)</option>
-            <option value="hard">Складний (1 хв.)</option>
-        </select>
-        <button id="start-game">Розпочати гру</button>
-    </div>
+  <h1>Memory Pair Game</h1>
 
-    <div id="game-container" class="game-container" style="display: none;">
-        <h2>Гравець: <span id="player-name"></span></h2>
-        <div class="game-board" id="game-board"></div>
-        <div id="timer">Час: 00:00</div>
-        <div id="moves">Кількість ходів: 0</div>
-        <button id="reset-game" style="display: none;">Рестарт</button>
-        <button id="view-stats" style="display: none;">Статистика</button>
-    </div>
+  <div id="settings">
+    <label>Гравець: <input type="text" id="player-name" placeholder="Введіть ім'я гравця"></label>
+    <label>Розмір поля:
+      <select id="grid-size">
+        <option value="4x4">4x4</option>
+        <option value="6x6">6x6</option>
+      </select>
+    </label>
+    <label>Складність:
+      <select id="difficulty">
+        <option value="easy">Легка (3 хв)</option>
+        <option value="normal">Середня (2 хв)</option>
+        <option value="hard">Складна (1 хв)</option>
+      </select>
+    </label>
+    <button id="start-game">Розпочати гру</button>
+    <button id="reset-settings">Скинути налаштування</button>
+    <button id="show-stats">Статистика</button>
+  </div>
 
-    <div id="stats" style="display: none;">
-        <h2>Статистика гравців</h2>
-        <ul id="stats-list"></ul>
-        <button id="close-stats">Закрити</button>
-    </div>
+  <div id="info">
+    <div id="timer">Час: 00:00</div>
+    <div id="moves">Ходи: 0</div>
+  </div>
+
+  <div id="game-wrapper">
+    <div id="game-board"></div>
+  </div>
 
   <div id="result"></div>
 
@@ -48,4 +45,3 @@
   <script src="script.js"></script>
 </body>
 </html>
- 
