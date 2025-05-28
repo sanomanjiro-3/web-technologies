@@ -50,30 +50,22 @@ document.querySelectorAll(".tab").forEach((tab) => {
   });
   
   loginForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const user = loginForm.username;
-    const pass = loginForm.loginPassword;
-    let valid = true;
-  
-    if (!user.value.trim()) {
-      showError(user, "Введіть ім'я користувача");
-      valid = false;
-    } else {
-      showSuccess(user);
-    }
-  
-    if (pass.value.length < 6) {
-      showError(pass, "Мінімум 6 символів");
-      valid = false;
-    } else {
-      showSuccess(pass);
-    }
-  
-    if (valid) {
-      alert("Вхід успішний!");
-      loginForm.reset();
-    }
-  });
+  e.preventDefault();
+
+  const usernameInput = loginForm.username.value.trim().toLowerCase();
+  const passwordInput = loginForm.loginPassword.value;
+
+  const users = JSON.parse(localStorage.getItem("users") || "[]");
+  const user = users.find(u => u.email === usernameInput && u.password === passwordInput);
+
+  if (user) {
+    alert(`Ласкаво просимо, ${user.firstName} ${user.lastName}!`);
+    localStorage.setItem("loggedInUser", JSON.stringify(user));
+    loginForm.reset();
+  } else {
+    alert("Невірний email або пароль.");
+  }
+});
   
   function validateRegisterForm() {
     const f = registerForm;
@@ -154,4 +146,75 @@ document.querySelectorAll(".tab").forEach((tab) => {
     group.classList.remove("error");
     group.querySelector("small").textContent = "";
   }
-  
+  document.addEventListener("DOMContentLoaded", () => {
+  const tabs = document.querySelectorAll(".tab");
+  const forms = document.querySelectorAll(".form");
+  const registerForm = document.getElementById("register-form");
+  const loginForm = document.getElementById("login-form");
+
+  // Перемикання вкладок
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      tabs.forEach(t => t.classList.remove("active"));
+      forms.forEach(f => f.classList.remove("active"));
+
+      tab.classList.add("active");
+      document.getElementById(`${tab.dataset.tab}-form`).classList.add("active");
+    });
+  });
+
+  // Збереження даних користувача в localStorage при реєстрації
+  registerForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const isValid = validateRegisterForm();
+  if (!isValid) return;
+
+  const formData = new FormData(registerForm);
+  const user = {
+    firstName: formData.get("firstName").trim(),
+    lastName: formData.get("lastName").trim(),
+    email: formData.get("email").trim().toLowerCase(),
+    password: formData.get("password"),
+    phone: formData.get("phone").trim(),
+    dob: formData.get("dob"),
+    sex: formData.get("sex"),
+    country: formData.get("country"),
+    city: formData.get("city"),
+  };
+
+  const users = JSON.parse(localStorage.getItem("users") || "[]");
+
+  if (users.some(u => u.email === user.email)) {
+    alert("Користувач з таким email вже існує.");
+    return;
+  }
+
+  users.push(user);
+  localStorage.setItem("users", JSON.stringify(users));
+  alert("Реєстрація успішна! Тепер ви можете увійти.");
+  registerForm.reset();
+  citySelect.disabled = true;
+  document.querySelectorAll(".form-group").forEach((group) => group.classList.remove("success"));
+});
+
+
+  // Авторизація
+  loginForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const usernameInput = loginForm.username.value.trim().toLowerCase();
+    const passwordInput = loginForm.loginPassword.value;
+
+    const users = JSON.parse(localStorage.getItem("users") || "[]");
+    const user = users.find(u => u.email === usernameInput && u.password === passwordInput);
+
+    if (user) {
+      alert(`Ласкаво просимо, ${user.firstName} ${user.lastName}!`);
+      // Якщо треба — зберегти в localStorage або перенаправити
+      localStorage.setItem("loggedInUser", JSON.stringify(user));
+    } else {
+      alert("Невірний email або пароль.");
+    }
+  });
+});

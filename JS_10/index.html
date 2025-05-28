@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Список користувачів з пошуком і пагінацією</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f0f2f5;
+      margin: 0; padding: 20px;
+      color: #1c1e21;
+    }
+
+    h1 {
+      text-align: center;
+      color: #1877f2;
+      margin-bottom: 20px;
+    }
+
+    /* --- Контейнер фільтрів --- */
+    .filters {
+      max-width: 1000px;
+      margin: 0 auto 30px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+      gap: 15px;
+    }
+
+    input[type="text"], input[type="number"], select {
+      padding: 10px 12px;
+      font-size: 16px;
+      border: 1px solid #ccd0d5;
+      border-radius: 8px;
+      width: 100%;
+      box-sizing: border-box;
+      transition: border-color 0.3s;
+    }
+    input[type="text"]:focus, input[type="number"]:focus, select:focus {
+      outline: none;
+      border-color: #1877f2;
+      box-shadow: 0 0 5px rgba(24,119,242,0.5);
+    }
+
+    /* --- Користувачі --- */
+    .users-list {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill,minmax(280px,1fr));
+      gap: 20px;
+    }
+
+    .user-card {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+      text-align: center;
+      transition: box-shadow 0.3s;
+    }
+    .user-card:hover {
+      box-shadow: 0 4px 16px rgba(24,119,242,0.4);
+    }
+
+    .user-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 15px;
+      border: 3px solid #1877f2;
+    }
+
+    .user-name {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin: 0 0 10px;
+      color: #1877f2;
+    }
+    .user-info {
+      font-size: 0.95rem;
+      color: #606770;
+      margin: 5px 0;
+      word-break: break-word;
+    }
+    .user-email, .user-phone {
+      color: #1877f2;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 5px;
+      font-weight: 600;
+    }
+    .user-email:hover, .user-phone:hover {
+      text-decoration: underline;
+    }
+
+    /* --- Пагінація --- */
+    .pagination {
+      max-width: 1000px;
+      margin: 30px auto;
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .page-btn {
+      padding: 8px 14px;
+      border-radius: 6px;
+      border: 1px solid #ccd0d5;
+      background: white;
+      cursor: pointer;
+      font-weight: 600;
+      color: #1877f2;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .page-btn:hover {
+      background-color: #1877f2;
+      color: white;
+    }
+    .page-btn.active {
+      background-color: #145dbf;
+      color: white;
+      cursor: default;
+      border-color: #145dbf;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Список користувачів</h1>
+
+  <section class="filters" aria-label="Фільтри користувачів">
+    <input id="searchName" type="text" placeholder="Пошук за ім'ям..." aria-label="Пошук за ім'ям" />
+
+    <input id="filterAgeMin" type="number" placeholder="Вік від (мінімум)" aria-label="Вік від" min="0" max="120" />
+    <input id="filterAgeMax" type="number" placeholder="Вік до (максимум)" aria-label="Вік до" min="0" max="120" />
+
+    <input id="filterBirthYearMin" type="number" placeholder="Рік народження від" aria-label="Рік народження від" min="1900" max="2025" />
+    <input id="filterBirthYearMax" type="number" placeholder="Рік народження до" aria-label="Рік народження до" min="1900" max="2025" />
+
+    <input id="filterLocation" type="text" placeholder="Місце розташування" aria-label="Фільтр за місцем розташування" />
+    <input id="filterEmail" type="text" placeholder="Фільтр за електронною поштою" aria-label="Фільтр за електронною поштою" />
+  </section>
+
+  <section class="users-list" id="usersList" aria-live="polite" aria-label="Список користувачів">
+    <!-- Картки користувачів -->
+  </section>
+
+  <nav class="pagination" id="pagination" aria-label="Пагінація"></nav>
+
+<script>
+  // Тестові дані (згенеровано для прикладу)
+  const users = [];
+  const currentYear = new Date().getFullYear();
+
+  function randomInt(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
+  const names = ['Олександр','Марія','Іван','Олена','Петро','Наталя','Віктор','Ірина','Сергій','Юлія','Максим','Світлана','Дмитро','Катерина','Андрій'];
+  const locations = ['Київ','Львів','Одеса','Харків','Дніпро','Запоріжжя','Івано-Франківськ','Чернігів','Полтава','Житомир'];
+  const domains = ['example.com','mail.ua','ukr.net','gmail.com','yahoo.com'];
+  const phones = ['+380501234567', '+380631112233', '+380672233445', '+380931234567', '+380441122334'];
+
+  // Генерація 100 користувачів
+  for(let i=1; i<=100; i++) {
+    const name = names[randomInt(0, names.length-1)];
+    const age = randomInt(18, 70);
+    const birthYear = currentYear - age;
+    const location = locations[randomInt(0, locations.length-1)];
+    const email = `${name.toLowerCase()}${i}@${domains[randomInt(0, domains.length-1)]}`;
+    const phone = phones[randomInt(0, phones.length-1)];
+    const avatar = `https://i.pravatar.cc/100?img=${i%70 + 1}`;
+    users.push({id: i, name, age, birthYear, location, email, phone, avatar});
+  }
+
+  const usersList = document.getElementById('usersList');
+  const pagination = document.getElementById('pagination');
+
+  const searchName = document.getElementById('searchName');
+  const filterAgeMin = document.getElementById('filterAgeMin');
+  const filterAgeMax = document.getElementById('filterAgeMax');
+  const filterBirthYearMin = document.getElementById('filterBirthYearMin');
+  const filterBirthYearMax = document.getElementById('filterBirthYearMax');
+  const filterLocation = document.getElementById('filterLocation');
+  const filterEmail = document.getElementById('filterEmail');
+
+  let filteredUsers = [...users];
+  let currentPage = 1;
+  const usersPerPage = 30;
+
+  // Рендер користувачів на сторінці
+  function renderUsers(users, page=1) {
+    const startIdx = (page - 1) * usersPerPage;
+    const endIdx = startIdx + usersPerPage;
+    const pageUsers = users.slice(startIdx, endIdx);
+
+    if(pageUsers.length === 0 && page > 1) {
+      currentPage--;
+      renderPagination(users);
+      renderUsers(users, currentPage);
+      return;
+    }
+
+    usersList.innerHTML = pageUsers.map(user => `
+      <article class="user-card" tabindex="0" aria-label="Користувач ${user.name}, вік ${user.age}, місце розташування ${user.location}">
+        <img src="${user.avatar}" alt="Аватар ${user.name}" class="user-avatar" />
+        <h2 class="user-name">${user.name}</h2>
+        <p class="user-info">Вік: ${user.age}</p>
+        <p class="user-info">Рік народження: ${user.birthYear}</p>
+        <p class="user-info">Місто: ${user.location}</p>
+        <a href="mailto:${user.email}" class="user-email" aria-label="Електронна пошта ${user.email}">${user.email}</a><br/>
+        <a href="tel:${user.phone}" class="user-phone" aria-label="Телефонний номер ${user.phone}">${user.phone}</a>
+      </article>
+    `).join('');
+  }
+
+  // Рендер пагінації
+  function renderPagination(users) {
+    const pageCount = Math.ceil(users.length / usersPerPage);
+    if(pageCount <= 1) {
+      pagination.innerHTML = '';
+      return;
+    }
+    let buttons = '';
+    for(let i=1; i <= pageCount; i++) {
+      buttons += `<button class="page-btn ${i === currentPage ? 'active' : ''}" data-page="${i}" aria-current="${i === currentPage ? 'page' : false}">${i}</button>`;
+    }
+    pagination.innerHTML = buttons;
+
+    // Додаємо обробник кліку
+    Array.from(pagination.children).forEach(btn => {
+      btn.addEventListener('click', () => {
+        if(btn.classList.contains('active')) return;
+        currentPage = Number(btn.dataset.page);
+        renderUsers(filteredUsers, currentPage);
+        renderPagination(filteredUsers);
+        window.scrollTo({top: 0, behavior: 'smooth'});
+      });
+    });
+  }
+
+  // Функція debounce
+  function debounce(fn, delay) {
+    let timeoutId;
+    return (...args) => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => fn(...args), delay);
+    };
+  }
+
+  // Фільтрація користувачів
+  function filterUsers() {
+    const nameVal = searchName.value.trim().toLowerCase();
+    const ageMinVal = parseInt(filterAgeMin.value);
+    const ageMaxVal = parseInt(filterAgeMax.value);
+    const birthYearMinVal = parseInt(filterBirthYearMin.value);
+    const birthYearMaxVal = parseInt(filterBirthYearMax.value);
+    const locationVal = filterLocation.value.trim().toLowerCase();
+    const emailVal = filterEmail.value.trim().toLowerCase();
+
+    filteredUsers = users.filter(user => {
+      if(nameVal && !user.name.toLowerCase().includes(nameVal)) return false;
+      if(!isNaN(ageMinVal) && user.age < ageMinVal) return false;
+      if(!isNaN(ageMaxVal) && user.age > ageMaxVal) return false;
+      if(!isNaN(birthYearMinVal) && user.birthYear < birthYearMinVal) return false;
+      if(!isNaN(birthYearMaxVal) && user.birthYear > birthYearMaxVal) return false;
+      if(locationVal && !user.location.toLowerCase().includes(locationVal)) return false;
+      if(emailVal && !user.email.toLowerCase().includes(emailVal)) return false;
+      return true;
+    });
+
+    currentPage = 1;
+    renderUsers(filteredUsers, currentPage);
+    renderPagination(filteredUsers);
+  }
+
+  // Обробники подій з debounce для пошуку та фільтрів
+  const debouncedFilter = debounce(filterUsers, 300);
+
+  searchName.addEventListener('input', debouncedFilter);
+  filterAgeMin.addEventListener('input', debouncedFilter);
+  filterAgeMax.addEventListener('input', debouncedFilter);
+  filterBirthYearMin.addEventListener('input', debouncedFilter);
+  filterBirthYearMax.addEventListener('input', debouncedFilter);
+  filterLocation.addEventListener('input', debouncedFilter);
+  filterEmail.addEventListener('input', debouncedFilter);
+
+  // Початковий рендер
+  renderUsers(users, currentPage);
+  renderPagination(users);
+</script>
+
+</body>
+</html>
