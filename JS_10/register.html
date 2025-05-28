@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <title>Реєстрація</title>
+      <link rel="stylesheet" href="css/auth.css" />
+
+</head>
+<body>
+  <h1>Реєстрація</h1>
+  <form id="register-form" class="form active">
+      <div class="form-group">
+        <label>First Name</label>
+        <input type="text" name="firstName" required />
+        <small></small>
+      </div>
+      <div class="form-group">
+        <label>Last Name</label>
+        <input type="text" name="lastName" required />
+        <small></small>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" name="email" required />
+        <small></small>
+      </div>
+      <div class="form-group password-field">
+        <label>Password</label>
+        <input type="password" name="password" required />
+        <span class="toggle-eye">👁</span>
+        <small></small>
+      </div>
+      <div class="form-group password-field">
+        <label>Confirm Password</label>
+        <input type="password" name="confirmPassword" required />
+        <span class="toggle-eye">👁</span>
+        <small></small>
+      </div>
+      <div class="form-group">
+        <label>Phone</label>
+        <input type="tel" name="phone" required />
+        <small></small>
+      </div>
+      <div class="form-group">
+        <label>Date of Birth</label>
+        <input type="date" name="dob" required />
+        <small></small>
+      </div>
+      <div class="form-group">
+        <label>Sex</label>
+        <select name="sex" required>
+          <option value="">Оберіть</option>
+          <option value="male">Чоловік</option>
+          <option value="female">Жінка</option>
+        </select>
+        <small></small>
+      </div>
+      <div class="form-group">
+        <label>Country</label>
+        <select name="country" required></select>
+        <small></small>
+      </div>
+      <div class="form-group">
+        <label>City</label>
+        <select name="city" disabled required></select>
+        <small></small>
+      </div>
+      <button type="submit">Зареєструватися</button>
+    </form>
+
+  <script src="js/auth.js"></script>
+  <script src="js/registerValidation.js"></script>
+
+</body>
+</html>
